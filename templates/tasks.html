@@ -1,0 +1,71 @@
+{% load static %}
+
+<head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h3>TODO</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+        <h4 style="font-family: fangsong;margin-left: 25;">Add Task</h4>
+       <div class="form-group">
+
+    <form method="post" class="shadow p-3 mb-5 bg-white rounded">
+         {% csrf_token %}
+        <div class="card border-danger mb-3" style="height:40px" >
+        <input type="text" class="form-control" id="formGroupExampleInput" name="task" placeholder="task name"><br>
+         </div>
+        <div class="card border-danger mb-3" style="height:40px">
+        <input type="text" class="form-control" id="formGroupExampleInput2" name="priority" placeholder="task priority"><br>
+        </div>
+        <div class="card border-danger mb-3" style="height:40px">
+        <input type="date" class="form-control"  name="date" placeholder="date"><br>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="submit"><br>
+    </form>
+        </div>
+
+    </div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h4 style="font-family: fangsong;margin-left: 25;">Tasks</h4>
+        {% for i in obj1 %}
+        <div class="shadow p-3 mb-1 bg-white rounded">
+        <div class="card" style="width:430px">
+            <div class="card-body">
+                <h4 class="card-title">{{i.name}}</h4>
+                <p class="card border-danger mb-3">{{i.priority}}</p>
+                <p>{{i.date}}</p>
+                <a class="btn btn-danger" href="{% url 'delete' i.id %} ">Done</a>
+                <a class="btn btn-success" href="{% url 'update' i.id %} ">Update</a>
+
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
